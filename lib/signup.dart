@@ -1,51 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:pasmed/homepage.dart';
-import 'package:pasmed/signup.dart';
 
-void main() {
-  runApp(const MyApp());
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 213, 179, 179)),
-        useMaterial3: true,
-      ),
-      home: const LoginPage(title: ''),
-    );
-  }
-}
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
@@ -53,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             Container(
               width: 428,
-              height: 783,
+              height: 1000,
               clipBehavior: Clip.antiAlias,
               decoration:
                   BoxDecoration(color: Color.fromARGB(255, 234, 234, 234)),
@@ -62,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
                   Positioned(
                     //container judul
                     left: 25,
-                    top: 170,
+                    top: 20,
                     child: Container(
                       width: 324,
                       height: 150,
@@ -98,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                             left: 133,
                             top: 120,
                             child: Text(
-                              'MASUK',
+                              'DAFTAR',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 28,
@@ -115,14 +81,89 @@ class _LoginPageState extends State<LoginPage> {
                   Positioned(
                     //container input email and passw
                     left: 50,
-                    top: 350,
+                    top: 200,
                     child: Container(
                         width: 310,
-                        height: 300,
+                        height: 900,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment
                               .center, // Mengubah penataan teks ke tengah
                           children: [
+                            TextField(
+                              decoration: InputDecoration(
+                                labelText: "Nama Poskesmas",
+                                labelStyle: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    20), // Menambahkan spasi antara TextField
+                            TextField(
+                              decoration: InputDecoration(
+                                labelText: "Provinsi",
+                                labelStyle: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    20), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
+                            TextField(
+                              decoration: InputDecoration(
+                                labelText: "Kabupaten",
+                                labelStyle: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    20), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
+                            TextField(
+                              decoration: InputDecoration(
+                                labelText: "Kecamatan",
+                                labelStyle: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    20), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
+                            TextField(
+                              decoration: InputDecoration(
+                                labelText: "Desa",
+                                labelStyle: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    20), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
                             TextField(
                               decoration: InputDecoration(
                                 labelText: "Email",
@@ -137,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SizedBox(
                                 height:
-                                    20), // Menambahkan spasi antara TextField
+                                    20), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
                             TextField(
                               obscureText: true,
                               decoration: InputDecoration(
@@ -153,57 +194,62 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SizedBox(
                                 height:
-                                    2), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: TextButton(
-                                onPressed: () {
-                                  // Action ketika tombol "Forgot Password" ditekan
-                                },
-                                child: Text(
-                                  "Forgot Password",
-                                  style: TextStyle(
-                                      fontFamily: 'Lato',
-                                      fontWeight: FontWeight.w400),
+                                    20), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                labelText: "Konfirmasi Kata Sandi",
+                                labelStyle: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
                               ),
                             ),
+                            SizedBox(
+                                height:
+                                    20), // Menambahkan spasi antara kolom password dan tombol "Forgot Password"
                           ],
                         )),
                   ),
                   Positioned(
                     // container login button
                     left: 55, // Sesuaikan dengan posisi yang diinginkan
-                    top: 560, // Sesuaikan dengan posisi yang diinginkan
+                    top: 870, // Sesuaikan dengan posisi yang diinginkan
                     child: SizedBox(
                       width: 300, // Tentukan panjang tombol
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ),
-                          );
+                          // // Action ketika tombol login ditekan
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => HomePage(),
+                          //   ),
+                          // );
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Color(
-                              0xFF32B4FE)), // Warna latar belakang sesuai keinginan
+                              0xFF32B4FE)), // Ubah warna latar belakang sesuai keinginan
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
-                                  15.0), // Radius sesuai keinginan
+                                  15.0), // Sesuaikan dengan radius yang diinginkan
                             ),
                           ),
                         ),
                         child: Text(
-                          "Masuk",
+                          "Daftar",
                           style: TextStyle(
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.w600,
-                            fontSize: 18, // Ukuran font sesuai keinginan
-                            color: Colors.black, // Warna teks menjadi hitam
+                            fontSize:
+                                18, // Sesuaikan dengan ukuran font yang diinginkan
+                            color:
+                                Colors.black, // Ubah warna teks menjadi hitam
                           ),
                         ),
                       ),
@@ -211,27 +257,26 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Positioned(
                     left: 124,
-                    top: 618,
+                    top: 950,
                     child: SizedBox(
                       width: 300,
                       height: 15,
                       child: GestureDetector(
                         onTap: () {
                           // Action ketika label "Masuk" ditekan
-                          Navigator.pushReplacement(
-                            // Replace the current route with the new one
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const SignupPage(), // Navigate back to login page
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) =>
+                          //         // _LoginPageState(), // Mengarahkan ke halaman login
+                          //   ),
+                          // );
                         },
                         child: Text.rich(
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Belum punya akun? ',
+                                text: 'Sudah punya akun? ',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
@@ -240,7 +285,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               TextSpan(
-                                text: 'Daftar',
+                                text: 'Masuk',
                                 style: TextStyle(
                                   color: Color(0xFF005688),
                                   fontSize: 14,
