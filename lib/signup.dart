@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pasmed/main.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -222,13 +223,12 @@ class _SignupPageState extends State<SignupPage> {
                       width: 300, // Tentukan panjang tombol
                       child: ElevatedButton(
                         onPressed: () {
-                          // // Action ketika tombol login ditekan
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => HomePage(),
-                          //   ),
-                          // );
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyApp(),
+                            ),
+                          );
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Color(
@@ -263,14 +263,12 @@ class _SignupPageState extends State<SignupPage> {
                       height: 15,
                       child: GestureDetector(
                         onTap: () {
-                          // Action ketika label "Masuk" ditekan
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) =>
-                          //         // _LoginPageState(), // Mengarahkan ke halaman login
-                          //   ),
-                          // );
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyApp(),
+                            ),
+                          );
                         },
                         child: Text.rich(
                           TextSpan(

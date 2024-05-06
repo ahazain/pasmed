@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:pasmed/homepage.dart';
 import 'package:pasmed/signup.dart';
 
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                                 labelText: "Email",
                                 labelStyle: TextStyle(
                                   fontFamily: 'Lato',
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w400
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
