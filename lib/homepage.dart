@@ -24,7 +24,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _widgetOptions = <Widget>[
-      HomeScreen(toggleFormVisibility: _toggleFormVisibility),
+      HomeScreen(
+        toggleFormVisibility: _toggleFormVisibility,
+        isFormVisible: _isFormVisible,
+      ),
       VisitScreen(),
       ProfileScreen(),
     ];
@@ -34,6 +37,14 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex = index;
     });
+    if (index == 0) {
+      _toggleFormVisibility();
+    } else {
+      // Menyembunyikan form input jika halaman beranda dipilih
+      setState(() {
+        _isFormVisible = false;
+      });
+    }
   }
 
   @override
@@ -87,24 +98,46 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           _widgetOptions[_selectedIndex],
-          AnimatedOpacity(
+          AnimatedContainer(
             duration: Duration(milliseconds: 500),
-            opacity: _isFormVisible ? 1.0 : 0.0,
-            child: Container(
-              color: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Nama Pasien',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
+            height: _isFormVisible ? null : 0,
+            color: _isFormVisible
+                ? Color.fromARGB(0, 145, 145, 145)
+                : Colors.transparent,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.5),
+            child: _isFormVisible
+                ? Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Nama Pasien',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Jenis Kelamin',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Aksi ketika tombol Kirim ditekan
+                        },
+                        child: Text('Kirim'),
+                      ),
+                    ],
+                  )
+                : null,
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -123,21 +156,18 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
-      floatingActionButton: _selectedIndex == 0
-          ? FloatingActionButton(
-              onPressed: _toggleFormVisibility,
-              backgroundColor: Colors.blue,
-              child: Icon(Icons.add),
-            )
-          : null,
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
   final VoidCallback toggleFormVisibility;
+  final bool isFormVisible;
 
-  const HomeScreen({required this.toggleFormVisibility});
+  const HomeScreen({
+    required this.toggleFormVisibility,
+    required this.isFormVisible,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -226,11 +256,12 @@ class ProfileScreen extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
+              // Ganti dengan gambar profil Anda
               backgroundImage: AssetImage(''),
             ),
             SizedBox(height: 20),
             Text(
-              'Nama Pengguna',
+              'Surahki', // Ganti dengan nama pengguna Anda
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -260,4 +291,10 @@ class PatientVisit {
   final String visitDate;
 
   PatientVisit({required this.nik, required this.visitDate});
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: HomePage(),
+  ));
 }

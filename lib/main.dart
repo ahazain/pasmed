@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +25,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key, required this.title});
 
   final String title;
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +114,8 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                 labelText: "Email",
                                 labelStyle: TextStyle(
-                                  fontFamily: 'Lato',
-                                  fontWeight: FontWeight.w400
-                                ),
+                                    fontFamily: 'Lato',
+                                    fontWeight: FontWeight.w400),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
